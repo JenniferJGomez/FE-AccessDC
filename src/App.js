@@ -4,7 +4,7 @@ import HomePage from './containers/HomePage';
 import LocationsContainer from './containers/LocationsContainer'
 import LocationProfile from './containers/LocationProfile'
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import NavBar from './containers/NavBar'
+import NavigationBar from './containers/NavigationBar'
 import UserProfile from './containers/UserProfile'
 
 class App extends React.Component {
@@ -25,7 +25,7 @@ class App extends React.Component {
       <div className = "app">
         {this.state.loading ? (
         <Router>
-          <NavBar/>
+          <NavigationBar/>
 
           <Route exact path="/" render={props=> (
             <HomePage />
