@@ -5,6 +5,7 @@ import LocationsContainer from './containers/LocationsContainer'
 import LocationProfile from './containers/LocationProfile'
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import NavBar from './containers/NavBar'
+import UserProfile from './containers/UserProfile'
 
 class App extends React.Component {
 
@@ -36,9 +37,14 @@ class App extends React.Component {
 
           <Route exact path = "/locations/:id" render={props => {
             let id = parseInt(props.match.params.id)
-            // let locationObj = this.state.locationsArray.find(loc => loc.id === id)
-            return <LocationProfile id = {id}/>
+              return <LocationProfile id = {id}/>
           }
+        }/>
+
+        <Route exact path = "/users/:id" render={props => {
+          let id = parseInt(props.match.params.id)
+          return <UserProfile id = {id}/>
+        }
         }/>
 
         </Router>
