@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import HomePage from './containers/HomePage';
 import LocationsContainer from './containers/LocationsContainer'
+import LocationProfile from './containers/LocationProfile'
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './containers/NavBar'
 
 class App extends React.Component {
@@ -29,9 +29,15 @@ class App extends React.Component {
             <HomePage />
           )}/>
 
-          <Route path = "/locations" render={props => (
+          <Route exact path = "/locations" render={props => (
                  <LocationsContainer allLocations={this.state.locationsArray}/>
           )}/>
+
+          <Route exact path = "/locations/:id" render={props => (
+            <LocationProfile />
+          )}
+          
+          />
 
         </Router>
       </div>
