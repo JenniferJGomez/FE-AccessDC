@@ -6,6 +6,7 @@ import LocationProfile from './containers/LocationProfile'
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import NavigationBar from './containers/NavigationBar'
 import UserProfile from './containers/UserProfile'
+import LoginPage from './containers/LoginPage';
 
 class App extends React.Component {
 
@@ -45,6 +46,11 @@ class App extends React.Component {
           let id = parseInt(props.match.params.id)
           return <UserProfile id = {id}/>
         }
+        }/>
+
+        <Route exact path = "/login" render={props => (
+           <LoginPage />
+        )
         }/>
 
         </Router>
