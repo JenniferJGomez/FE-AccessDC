@@ -22,6 +22,7 @@ class App extends React.Component {
   render(){
     return(
       <div className = "app">
+        {this.state.loading ? (
         <Router>
           <NavBar/>
 
@@ -33,13 +34,15 @@ class App extends React.Component {
                  <LocationsContainer allLocations={this.state.locationsArray}/>
           )}/>
 
-          <Route exact path = "/locations/:id" render={props => (
-            <LocationProfile />
-          )}
-          
-          />
+          <Route exact path = "/locations/:id" render={props => {
+            let id = parseInt(props.match.params.id)
+            // let locationObj = this.state.locationsArray.find(loc => loc.id === id)
+            return <LocationProfile id = {id}/>
+          }
+        }/>
 
         </Router>
+        ) : ("Loading!!!")}
       </div>
     )
 
