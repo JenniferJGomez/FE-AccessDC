@@ -28,9 +28,11 @@ class App extends React.Component {
         <Router>
           <NavigationBar/>
 
-          <Route exact path ="/">
-            <HomePage />
-          </Route>
+          <Route exact path ="/" render={props => (
+            <HomePage allLocations={this.state.locationsArray}/>
+          )}/>
+            
+          
 
           <Route exact path = "/locations" render={props => (
                  <LocationsContainer allLocations={this.state.locationsArray}/>

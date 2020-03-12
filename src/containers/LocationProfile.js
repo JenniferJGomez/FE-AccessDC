@@ -1,7 +1,6 @@
 import React from 'react'
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ReviewCard from '../present/ReviewCard'
 
 class LocationProfile extends React.Component {
 
@@ -28,6 +27,7 @@ class LocationProfile extends React.Component {
         }
 
     render(){
+        let reviews = this.state.locationObj.reviews
         return(
             <div>
                 <div>
@@ -39,6 +39,11 @@ class LocationProfile extends React.Component {
                         <button>Back</button>
                     </Link>
                     <button onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
+                </div>
+                <div className ="reviews-container">
+                    {reviews ? reviews.map(review => 
+                        <ReviewCard key = {review.id} review = {review}/>
+                    ): null}
                 </div>
             </div>
         )
