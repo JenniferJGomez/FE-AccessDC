@@ -41,6 +41,14 @@ class LocationProfile extends React.Component {
                     <button onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
                 </div>
                 <div className ="reviews-container">
+                    <form>
+                        <div className="form-group">
+                        <label>Leave a Review:</label>
+                        <textarea className="form-control" id="review-form" rows="3"></textarea>
+                        <input type="submit" value="Submit"></input>
+                        </div>
+                    </form>
+                    <h3>Reviews:</h3>
                     {reviews ? reviews.map(review => 
                         <ReviewCard key = {review.id} review = {review}/>
                     ): null}
