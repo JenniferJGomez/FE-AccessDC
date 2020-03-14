@@ -6,7 +6,9 @@ class LocationProfile extends React.Component {
 
     state = {
         locationObj: {},
-        currentUser: {id: 8}
+        currentUser: {id: 8},
+        value: "",
+        reviewsArray: []
     }
 
     componentDidMount(){
@@ -26,6 +28,26 @@ class LocationProfile extends React.Component {
           })
         }
 
+        handleChange = (event) => {
+            this.setState({value: event.target.value});
+          }
+
+        submitReview = (event) => {
+            event.preventDefault()
+            fetch("http://localhost:3000/reviews", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({user_id: this.state.currentUser.id, location_id: this.state.locationObj.id, review: this.state.value})
+            })
+            .then(res => res.json())
+            .then(review => this.setState({reviewsArray: [...this.state.reviewsArray, review], value: ""}))
+            
+    }
+
+
     render(){
         let reviews = this.state.locationObj.reviews
         return(
@@ -41,10 +63,10 @@ class LocationProfile extends React.Component {
                     <button onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
                 </div>
                 <div className ="reviews-container">
-                    <form>
+                    <form id = "submit-form" onSubmit = {this.submitReview}>
                         <div className="form-group">
                         <label>Leave a Review:</label>
-                        <textarea className="form-control" id="review-form" rows="3"></textarea>
+                        <textarea className="form-control"id="review-form" rows="4" cols="10" value={this.state.value}  onChange = {this.handleChange}></textarea>
                         <input type="submit" value="Submit"></input>
                         </div>
                     </form>

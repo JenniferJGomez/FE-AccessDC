@@ -4,11 +4,12 @@ import UserFavorites from '../present/UserFavorites'
 class UserProfile extends React.Component{
 
     state ={
-        userObj: {}
+        userObj: {},
+        currentUser: {id: 8}
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/users/${this.props.id}`)
+        fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
         .then(res => res.json())
         .then(data => this.setState({userObj: data}))
     }
