@@ -34,6 +34,7 @@ class LocationProfile extends React.Component {
 
         submitReview = (event) => {
             event.preventDefault()
+            let newReview = [...this.state.reviewsArray]
             fetch("http://localhost:3000/reviews", {
                 method: 'POST',
                 headers: {
@@ -43,12 +44,16 @@ class LocationProfile extends React.Component {
                 body: JSON.stringify({user_id: this.state.currentUser.id, location_id: this.state.locationObj.id, review: this.state.value})
             })
             .then(res => res.json())
-            .then(review => this.setState({reviewsArray: [...this.state.reviewsArray, review], value: ""}))
+            .then(review => this.setState({locationObj: [...this.state.reviewsArray, review], value: ""}))
+
+            //let newReview = [...this.state.reviewsArray]
+            //newReview.reviews = review
             
     }
 
 
     render(){
+        console.log(this.state.locationObj)
         let reviews = this.state.locationObj.reviews
         return(
             <div>
