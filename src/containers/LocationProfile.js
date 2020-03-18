@@ -47,6 +47,17 @@ class LocationProfile extends React.Component {
             .then(review => this.setState({locationObj: {...this.state.locationObj, reviews: [...this.state.locationObj.reviews, review]}, value: ""}))
     }
 
+    deleteReview = (review) => {
+        console.log(review.user_id, review.location_id)
+        fetch(`http://localhost:3000/reviews/${review.user_id}/${review.location_id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        })
+    }
+
 
     render(){
         let reviews = this.state.locationObj.reviews
@@ -72,7 +83,7 @@ class LocationProfile extends React.Component {
                     </form>
                     <h3>Reviews:</h3>
                     {reviews ? reviews.map(review => 
-                        <ReviewCard key = {review.id} review = {review}/>
+                        <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview}/>
                     ): null}
                 </div>
             </div>
