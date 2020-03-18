@@ -8,7 +8,6 @@ class LocationProfile extends React.Component {
         locationObj: {},
         currentUser: {id: 8},
         value: "",
-        reviewsArray: []
     }
 
     componentDidMount(){
@@ -16,7 +15,7 @@ class LocationProfile extends React.Component {
         .then(res => res.json())
         .then(data => this.setState({locationObj: data}))
     }
-
+//******************favorite handlers******************//
     bookmark = (location) => {
         fetch('http://localhost:3000/favorites', {
             method: 'POST',
@@ -28,9 +27,13 @@ class LocationProfile extends React.Component {
           })
         }
 
+
+
+//******************review handlers******************//
+
         handleChange = (event) => {
             this.setState({value: event.target.value});
-          }
+        }
 
         submitReview = (event) => {
             
@@ -48,7 +51,7 @@ class LocationProfile extends React.Component {
     }
 
     deleteReview = (review) => {
-        console.log(review.user_id, review.location_id)
+        let reviewsArray = this.state.locationObj.reviews
         fetch(`http://localhost:3000/reviews/${review.user_id}/${review.location_id}`, {
             method: 'DELETE',
             headers: {
@@ -56,8 +59,23 @@ class LocationProfile extends React.Component {
                 "Accept": "application/json"
             },
         })
+
+        let result = reviewsArray.filter(rev => rev.id === review.id)
+        let updatedReviews = [...reviewsArray].splice(result)
+        this.setState(updatedReviews)
+        //currently deleting all arrays
     }
 
+    editReview = (review) => {
+        console.log(review)
+        // fetch(`http://localhost:3000/reviews/${review.user_id}/${review.location_id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     },
+        // })
+    }
 
     render(){
         let reviews = this.state.locationObj.reviews
@@ -83,7 +101,7 @@ class LocationProfile extends React.Component {
                     </form>
                     <h3>Reviews:</h3>
                     {reviews ? reviews.map(review => 
-                        <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview}/>
+                        <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}
                 </div>
             </div>

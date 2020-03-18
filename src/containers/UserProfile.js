@@ -14,6 +14,17 @@ class UserProfile extends React.Component{
         .then(data => this.setState({userObj: data}))
     }
 
+    removeBookmarkHandler = (favorite) => {
+        fetch(`http://localhost:3000/favorites/${this.state.currentUser.id}/${favorite.id}`, {
+          method: 'DELETE',
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          },
+        })
+        //need to setstate here to render the new favorites array
+      }
+
     render(){
         let locations = this.state.userObj.locations
         return(
@@ -24,7 +35,7 @@ class UserProfile extends React.Component{
                 <div>
                     <h5>Favorites:</h5>
                     {locations ? locations.map(location =>
-                        <UserFavorites key = {location.id} favorite = {location}/>
+                        <UserFavorites key = {location.id} favorite = {location} remove = {this.removeBookmarkHandler}/>
                     ): null}
                 </div>
             </div>
