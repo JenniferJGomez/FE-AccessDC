@@ -6,7 +6,7 @@ class LocationProfile extends React.Component {
 
     state = {
         locationObj: {},
-        currentUser: {id: 8},
+        currentUser: {id: 9},
         value: "",
     }
 
@@ -25,9 +25,9 @@ class LocationProfile extends React.Component {
             },
             body: JSON.stringify({user_id: this.state.currentUser.id, location_id: location.id}),
           })
+          alert("Added to your favorites!")
+          //add conditional statement that gives alert based off if the favorite has already been added
         }
-
-
 
 //******************review handlers******************//
 
@@ -48,6 +48,7 @@ class LocationProfile extends React.Component {
             })
             .then(res => res.json())
             .then(review => this.setState({locationObj: {...this.state.locationObj, reviews: [...this.state.locationObj.reviews, review]}, value: ""}))
+            alert("Review Submitted!")
     }
 
     deleteReview = (review) => {
@@ -63,7 +64,7 @@ class LocationProfile extends React.Component {
         let result = reviewsArray.filter(rev => rev.id === review.id)
         let updatedReviews = [...reviewsArray].splice(result)
         this.setState(updatedReviews)
-        //currently deleting all arrays
+        //currently deleting all elements
     }
 
     editReview = (review) => {
