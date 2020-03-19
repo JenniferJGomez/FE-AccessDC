@@ -62,8 +62,6 @@ class LocationProfile extends React.Component {
         })
 
         let result = reviewsArray.filter(rev => rev.id === review.id)
-        let updatedReviews = [...reviewsArray].splice(result)
-        this.setState(updatedReviews)
         //currently deleting all elements
     }
 

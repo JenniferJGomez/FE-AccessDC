@@ -7,7 +7,7 @@ class LocationsContainer extends React.Component{
         return(
             <div>
                 <div>
-                    {this.props.allLocations.map(location => 
+                    {this.props.locations.map(location => 
                         <LocationCard key = {location.id} location = {location}/> 
                     )}  
                 </div>

@@ -13,7 +13,8 @@ class App extends React.Component {
 
   state = {
     loading: true,
-    locationsArray: []
+    locationsArray: [],
+    searchText: ""
   }
 
   componentDidMount(){
@@ -22,12 +23,20 @@ class App extends React.Component {
     .then(data=>this.setState({locationsArray: data}))
   }
 
+  changeSearchText = (event) => {
+    //this.setState() of searchText
+    this.setState({searchText: event.target.value.toLowerCase()})
+}
+
+
   render(){
+    let filteredLocations = this.state.locationsArray.filter(loc => loc.name.toLowerCase().includes(this.state.searchText))
     return(
       <div className = "app">
         {this.state.loading ? (
         <Router>
-          <NavigationBar/>
+          
+          <NavigationBar searchText = {this.state.searchText} changeText = {this.changeSearchText}/>
 
           <Route exact path ="/" render={props => (
             <HomePage allLocations={this.state.locationsArray}/>
@@ -36,7 +45,7 @@ class App extends React.Component {
           
 
           <Route exact path = "/locations" render={props => (
-                 <LocationsContainer allLocations={this.state.locationsArray}/>
+                 <LocationsContainer allLocations={this.state.locationsArray} locations = {filteredLocations}/>
           )}/>
 
           <Route exact path = "/locations/:id" render={props => {
