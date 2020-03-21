@@ -5,16 +5,18 @@ class UserProfile extends React.Component{
 
     state ={
         userObj: {},
-        currentUser: {id: 9}
+        currentUser: {id: 9},
+        locations: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
         .then(res => res.json())
-        .then(data => this.setState({userObj: data}))
+        .then(data => this.setState({userObj: data, locations: data.locations}))
     }
 
     removeBookmarkHandler = (favorite) => {
+        let locArray = this.state.locations
         fetch(`http://localhost:3000/favorites/${this.state.currentUser.id}/${favorite.id}`, {
           method: 'DELETE',
           headers: {
@@ -22,11 +24,12 @@ class UserProfile extends React.Component{
               "Accept": "application/json"
           },
         })
-        //need to setstate here to render the new favorites array
+        let result = locArray.filter(loc => loc.id !== favorite.id)
+        this.setState({locations: result})
       }
 
     render(){
-        let locations = this.state.userObj.locations
+        let locations = this.state.locations
         return(
             <div>
                 <h1>{this.state.userObj.username}'s Profile</h1>

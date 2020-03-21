@@ -70,7 +70,9 @@ class App extends React.Component {
         }/>
 
         </Router>
-        ) : ("Loading!!!")}
+        ) : (<div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>)}
       </div>
     )
 
