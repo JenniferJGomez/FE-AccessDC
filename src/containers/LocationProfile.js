@@ -8,12 +8,17 @@ class LocationProfile extends React.Component {
         locationObj: {},
         currentUser: {id: 9},
         value: "",
+        name: "",
+        phone: "",
+        img_url: "",
+        address: "",
+        reviews: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/locations/${this.props.id}`)
         .then(res => res.json())
-        .then(data => this.setState({locationObj: data}))
+        .then(data => this.setState({locationObj: data, name: data.name, address: data.address, img_url: data.img_url, phone: data.phone, reviews: data.reviews}))
     }
 //******************favorite handlers******************//
     bookmark = (location) => {
@@ -47,7 +52,7 @@ class LocationProfile extends React.Component {
                 body: JSON.stringify({user_id: this.state.currentUser.id, location_id: this.state.locationObj.id, review: this.state.value})
             })
             .then(res => res.json())
-            .then(review => this.setState({locationObj: {...this.state.locationObj, reviews: [...this.state.locationObj.reviews, review]}, value: ""}))
+            .then(review => this.setState({reviews: [...this.state.reviews, review], value: ""}))
             alert("Review Submitted!")
     }
 
@@ -61,8 +66,8 @@ class LocationProfile extends React.Component {
             },
         })
 
-        let result = reviewsArray.filter(rev => rev.id === review.id)
-        //currently deleting all elements
+        let result = reviewsArray.filter(rev => rev.id !== review.id)
+        this.setState({reviews: result})
     }
 
     editReview = (review) => {
@@ -77,14 +82,14 @@ class LocationProfile extends React.Component {
     }
 
     render(){
-        let reviews = this.state.locationObj.reviews
+        let rev = this.state.reviews
         return(
             <div>
                 <div>
-                    <h1>{this.state.locationObj.name}</h1>
-                    <img style={{width: 350, height: 300}} src ={this.state.locationObj.img_url} alt={this.state.locationObj.name}></img>
-                    <h5>{this.state.locationObj.phone}</h5>
-                    <p>Address: {this.state.locationObj.address}, Washington, D.C.</p>
+                    <h1>{this.state.name}</h1>
+                    <img style={{width: 350, height: 300}} src ={this.state.img_url} alt={this.state.name}></img>
+                    <h5>{this.state.phone}</h5>
+                    <p>Address: {this.state.address}, Washington, D.C.</p>
                     <Link to = "/locations">
                         <button>Back</button>
                     </Link>
@@ -99,7 +104,7 @@ class LocationProfile extends React.Component {
                         </div>
                     </form>
                     <h3>Reviews:</h3>
-                    {reviews ? reviews.map(review => 
+                    {rev ? rev.map(review => 
                         <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}
                 </div>
