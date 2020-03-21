@@ -57,7 +57,7 @@ class LocationProfile extends React.Component {
     }
 
     deleteReview = (review) => {
-        let reviewsArray = this.state.locationObj.reviews
+        let reviewsArray = this.state.reviews
         fetch(`http://localhost:3000/reviews/${review.user_id}/${review.location_id}`, {
             method: 'DELETE',
             headers: {
