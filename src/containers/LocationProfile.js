@@ -98,12 +98,12 @@ class LocationProfile extends React.Component {
                 <div className ="reviews-container">
                     <form id = "submit-form" onSubmit = {this.submitReview}>
                         <div className="form-group">
-                        <label>Leave a Review:</label>
+                        <h4>Leave a Review:</h4>
                         <textarea className="form-control"id="review-form" rows="4" cols="10" value={this.state.value}  onChange = {this.handleChange}></textarea>
                         <input type="submit" value="Submit"></input>
                         </div>
                     </form>
-                    <h3>Reviews:</h3>
+                    <h4>Reviews:</h4>
                     {rev ? rev.map(review => 
                         <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}

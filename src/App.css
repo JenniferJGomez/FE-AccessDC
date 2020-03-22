@@ -1,1 +1,41 @@
+/* about page styling */
+.jumbotron {
+  text-align: center;
+}
 
+/* navbar styling */
+.navbar {
+  width: 100%;
+  text-align: left;
+}
+
+#nav{
+  padding: 0;
+}
+
+.home-link {
+  color: white;
+}
+
+.about-link {
+  color: white;
+}
+
+.profile-link{
+  color: white;
+}
+
+.locations-link {
+  color: white;
+}
+
+/*reivew section styling*/
+#review-card{
+  text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+#review-form{
+  width: 50%;
+}

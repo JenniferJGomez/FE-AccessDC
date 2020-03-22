@@ -13,10 +13,11 @@ class HomePage extends React.Component {
                 <button className="btn btn-danger">Browse Locations</button>
               </Link>
               {locations ? locations.map( location => 
-                <FeaturedCard key={location.id} location ={location}/> ) :
+                <FeaturedCard key={location.id} location ={location}/> 
+                ) 
+                :
                 null
-              }
-              
+              }     
           </div>
         )
     
