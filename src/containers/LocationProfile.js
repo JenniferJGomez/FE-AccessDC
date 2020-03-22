@@ -6,7 +6,7 @@ class LocationProfile extends React.Component {
 
     state = {
         locationObj: {},
-        currentUser: {id: 9},
+        currentUser: {id: 163},
         value: "",
         name: "",
         phone: "",
@@ -83,9 +83,10 @@ class LocationProfile extends React.Component {
 
     render(){
         let rev = this.state.reviews
+        console.log(this.state.reviews)
         return(
             <div>
-                <div>
+                <div id = "location-info">
                     <h1>{this.state.name}</h1>
                     <img style={{width: 350, height: 300}} src ={this.state.img_url} alt={this.state.name}></img>
                     <h5>{this.state.phone}</h5>
@@ -95,7 +96,7 @@ class LocationProfile extends React.Component {
                     </Link>
                     <button onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
                 </div>
-                <div className ="reviews-container">
+                <div id = "reviews-box" className ="reviews-container">
                     <form id = "submit-form" onSubmit = {this.submitReview}>
                         <div className="form-group">
                         <h4>Leave a Review:</h4>
@@ -103,7 +104,7 @@ class LocationProfile extends React.Component {
                         <input type="submit" value="Submit"></input>
                         </div>
                     </form>
-                    <h4>Reviews:</h4>
+                    <h4 id ="review-title">Reviews:</h4>
                     {rev ? rev.map(review => 
                         <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}

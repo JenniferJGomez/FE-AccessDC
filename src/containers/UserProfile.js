@@ -5,7 +5,7 @@ class UserProfile extends React.Component{
 
     state ={
         userObj: {},
-        currentUser: {id: 9},
+        currentUser: {id: 163},
         locations: []
     }
 

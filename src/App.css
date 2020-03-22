@@ -38,4 +38,27 @@
 
 #review-form{
   width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+#review-title{
+  text-align: center;
+}
+
+.form-group{
+  text-align: center;
+}
+
+/*location profile styling*/
+#location-info{
+  text-align: center;
+}
+
+.home-page {
+  text-align: center;
+  background-image: url("https://cdn.vox-cdn.com/thumbor/JYi5YEy3FR-XaRWOthiYbnkDQzM=/0x0:3500x2333/1200x675/filters:focal(1470x887:2030x1447)/cdn.vox-cdn.com/uploads/chorus_image/image/65161923/GettyImages_975466978.0.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 750px;
 }
