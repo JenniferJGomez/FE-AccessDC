@@ -85,7 +85,7 @@ class LocationProfile extends React.Component {
         return(
             <div>
                 <div id = "location-info">
-                    <h1>{this.state.name}</h1>
+                    <h1 id = "loc-profile-header">{this.state.name}</h1>
                     <img style={{width: 350, height: 300}} src ={this.state.img_url} alt={this.state.name}></img>
                     <h5>{this.state.phone}</h5>
                     <p>Address: {this.state.address}, Washington, D.C.</p>

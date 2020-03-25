@@ -31,7 +31,7 @@ class UserProfile extends React.Component{
     render(){
         let locations = this.state.locations
         return(
-            <div>
+            <div className = "profile-div">
                 <h1>{this.state.userObj.username}'s Profile</h1>
                 <img style={{width: 250, height: 230}} src = {this.state.userObj.avatar} alt="user"></img>
                 <h4>Name: {this.state.userObj.name}</h4>
