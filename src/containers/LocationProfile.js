@@ -6,7 +6,7 @@ class LocationProfile extends React.Component {
 
     state = {
         locationObj: {},
-        currentUser: {id: 163},
+        currentUser: {id: 164},
         value: "",
         name: "",
         phone: "",
@@ -71,7 +71,6 @@ class LocationProfile extends React.Component {
     }
 
     editReview = (review) => {
-        console.log(review)
         // fetch(`http://localhost:3000/reviews/${review.user_id}/${review.location_id}`, {
         //     method: 'PATCH',
         //     headers: {
@@ -83,7 +82,6 @@ class LocationProfile extends React.Component {
 
     render(){
         let rev = this.state.reviews
-        console.log(this.state.reviews)
         return(
             <div>
                 <div id = "location-info">
@@ -92,19 +90,20 @@ class LocationProfile extends React.Component {
                     <h5>{this.state.phone}</h5>
                     <p>Address: {this.state.address}, Washington, D.C.</p>
                     <Link to = "/locations">
-                        <button>Back</button>
+                        <button type="button" className="btn btn-outline-danger">Back</button>
                     </Link>
-                    <button onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
+                    <button type="button" className="btn btn-outline-danger" onClick = {()=>this.bookmark(this.state.locationObj)}>Add to favorites</button>
                 </div>
                 <div id = "reviews-box" className ="reviews-container">
                     <form id = "submit-form" onSubmit = {this.submitReview}>
                         <div className="form-group">
                         <h4>Leave a Review:</h4>
                         <textarea className="form-control"id="review-form" rows="4" cols="10" value={this.state.value}  onChange = {this.handleChange}></textarea>
-                        <input type="submit" value="Submit"></input>
+                        <input type="button" className="btn btn-outline-danger" type="submit" value="Submit"></input>
                         </div>
                     </form>
                     <h4 id ="review-title">Reviews:</h4>
+                    <p className="review-counter">Total Reviews: {rev.length ? rev.length : "No Reviews yet"}</p>
                     {rev ? rev.map(review => 
                         <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}

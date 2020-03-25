@@ -1,18 +1,30 @@
-import React from 'react'
-// import { Link } from "react-router-dom";
-// import { Carousel } from 'react-responsive-carousel';
+import React from 'react';
 
-const FeaturedCard = (props) => {
-    return(
-        
-            <div>
-                <img style={{width: 250, height: 200}} alt = {props.location.name} src = {props.location.img_url}></img>
-                {/* <Link to = {`/locations/${props.location.id}`}>
-                <button>More Info</button>
-                </Link> */}
+
+class FeaturedCard extends React.Component {
+
+    //create a ternary that will check if the active slide is 1 if not return carousel item
+    //create function to change state
+
+    render(){
+        return(
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                <img class="d-block w-100" src="..." alt="First slide"></img>
+                </div>
+                <div class="carousel-item active">
+                <img class="d-block w-100" src="..." alt="Second slide"></img>
+                </div>
+                <div class="carousel-item ">
+                <img class="d-block w-100" src="..." alt="Third slide"></img>
+                </div>
             </div>
-
-    )
+            </div>
+        )
+    }
 }
+
+
 
 export default FeaturedCard;
