@@ -61,6 +61,7 @@
   text-align: center;
 }
 
+/* home page styling*/
 .home-page {
   text-align: center;
   background-image: url("https://cdn.vox-cdn.com/thumbor/JYi5YEy3FR-XaRWOthiYbnkDQzM=/0x0:3500x2333/1200x675/filters:focal(1470x887:2030x1447)/cdn.vox-cdn.com/uploads/chorus_image/image/65161923/GettyImages_975466978.0.jpg");
@@ -81,6 +82,10 @@
   border-radius: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.featured-carousel{
+  /* margin-top: 50px; */
 }
 
 /*review card styling*/
@@ -123,6 +128,25 @@
   font-family: 'Nunito', sans-serif;
 }
 
+/*User Profile*/
+.user-favs-div{
+  height:300px;
+  width:600px;
+  border:1px solid #ccc;
+  overflow:auto;
+  margin: auto;
+  text-align: center;
+}
+
+.fav-cards{
+  margin: auto;
+  text-align: center;
+}
+
+.profile-div {
+  margin: auto;
+  text-align: center;
+}
 
 
 

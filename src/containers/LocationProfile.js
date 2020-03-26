@@ -104,9 +104,11 @@ class LocationProfile extends React.Component {
                     </form>
                     <h4 id ="review-title">Reviews:</h4>
                     <p className="review-counter">Total Reviews: {rev.length ? rev.length : "No Reviews yet"}</p>
+                    <div className="overflow-auto">
                     {rev ? rev.map(review => 
                         <ReviewCard key = {review.id} review = {review} delete = {this.deleteReview} edit = {this.editReview}/>
                     ): null}
+                    </div>
                 </div>
             </div>
         )

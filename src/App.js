@@ -14,18 +14,34 @@ class App extends React.Component {
   state = {
     loading: true,
     locationsArray: [],
-    searchText: ""
+    searchText: "",
+    properties: [],
+    property: {}
   }
 
   componentDidMount(){
     fetch("http://localhost:3000/locations")
     .then(res => res.json())
-    .then(data=>this.setState({locationsArray: data}))
+    .then(data=>this.setState({locationsArray: data, properties: data, property: data[0]}))
   }
 
   changeSearchText = (event) => {
     //this.setState() of searchText
     this.setState({searchText: event.target.value.toLowerCase()})
+}
+
+nextProperty = () => {
+  const newIndex = this.state.property.index+1;
+  this.setState({
+    property: this.state.properties[newIndex]
+  })
+}
+
+prevProperty = () => {
+  const newIndex = this.state.property.index-1;
+  this.setState({
+    property: this.state.properties[newIndex]
+  })
 }
 
 
@@ -39,7 +55,7 @@ class App extends React.Component {
           <NavigationBar searchText = {this.state.searchText} changeText = {this.changeSearchText}/>
 
           <Route exact path ="/" render={props => (
-            <HomePage allLocations={this.state.locationsArray}/>
+            <HomePage properties = {this.state.properties} property = {this.state.property} next = {this.nextProperty} previous = {this.prevProperty}/>
           )}/>
             
           
