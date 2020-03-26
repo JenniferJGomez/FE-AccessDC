@@ -1,7 +1,5 @@
 import React from "react"
-// import {
-//     Link
-//   } from "react-router-dom";
+import Logo from "../images/logo.png"
 
 
 
@@ -10,7 +8,7 @@ const NavigationBar = (props) => {
         
             <div id = "nav" className = "navbar">
                 <nav  className="navbar navbar-dark bg-primary" >
-                    <a className="navbar-brand" href="http://localhost:3001/locations">AccessDC</a>
+                    <a className="navbar-brand" href="http://localhost:3001/locations"><img id = "nav-logo" src = {Logo}></img></a>
                     <a className="home-link" href="http://localhost:3001/">Home<span className="sr-only">(current)</span></a>
                     <a className="about-link" href="http://localhost:3001/about">About<span className="sr-only">(current)</span></a>
                     <a className="locations-link" href="http://localhost:3001/locations">Locations<span className="sr-only">(current)</span></a>
